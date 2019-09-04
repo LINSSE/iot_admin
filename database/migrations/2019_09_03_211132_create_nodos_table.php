@@ -15,6 +15,9 @@ class CreateNodosTable extends Migration
     {
         Schema::create('nodos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('codigo');
+            $table->text('descripcion')->nullable();
+            $table->text('tags')->nullable();
             $table->timestamps();
         });
     }
