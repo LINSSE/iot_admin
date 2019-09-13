@@ -7,11 +7,30 @@ use App\nodo;
 class NodoController extends Controller
 {
     //
+    public function home(){
+        $nodos = nodo::all();
 
-    public function home($id = 1)
+        return view("home",["nodos"=>$nodos]);
+    }
+
+
+
+    //API
+
+    public function last($id)
     {
-        $nodo = nodo::find(1);
+        return response()->json(nodo::find($id)->ultimoPaquete());
+    }
 
-        return view("home")->with('nodo',$nodo);
+    public function lastMessages(){
+
+        $nodos = nodo::all();
+        $last = [];
+        foreach ($nodos as $nodo)
+        {
+            $last[$nodo->id] = $nodo->ultimoPaquete();
+        }
+        return response()->json($last);
+
     }
 }

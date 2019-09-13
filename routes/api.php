@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::post('guardar', 'PaqueteController@guardar');
+
+Route::get('lastMessage/{id}','NodoController@last');
+Route::get('lastMessages', 'NodoController@lastMessages');
