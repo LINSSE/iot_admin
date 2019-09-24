@@ -37,12 +37,15 @@ class PaqueteController extends Controller
             {
                if($key !== 'nodo') //ignorar nodo
                {
-                $val = new valor();
-                $val->nombre = $key;
-                $val->valor = $value;
-                $val->paquete_id = $paquete->id;
-                $val->save();
-                $c++;
+                if(is_numeric($value->valor))
+                {
+                            $val = new valor();
+                            $val->nombre = $key;
+                            $val->valor = $value;
+                            $val->paquete_id = $paquete->id;
+                            $val->save();
+                            $c++;
+                }
                }
             }
 
