@@ -37,15 +37,15 @@ class PaqueteController extends Controller
             {
                if($key !== 'nodo') //ignorar nodo
                {
-                if(is_numeric($value->valor))
-                {
+                    if(is_numeric($value))
+                    {
                             $val = new valor();
                             $val->nombre = $key;
                             $val->valor = $value;
                             $val->paquete_id = $paquete->id;
                             $val->save();
                             $c++;
-                }
+                    }
                }
             }
 
@@ -55,15 +55,14 @@ class PaqueteController extends Controller
             $res->paquete_id = $paquete->id;
             $res->valores_count = $c;
 
-
-
                 return response()->json($res,200);
 
             } else {
                 return response('ERROR: El mensaje debe contener el campo "nodo"',400);
             }
         } catch (\Throwable $th) {
-            return response('Formato de Mensaje Incorrecto', 400);
+            // return response('Formato de Mensaje Incorrecto', 400);
+            return $th;
         }
 
 
